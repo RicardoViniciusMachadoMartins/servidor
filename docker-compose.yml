@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  minecraft-server:
+    build: .
+    image: meu-usuario/minecraft-servidor:latest
+    container_name: mc_servidor
+    ports:
+      - "25565:25565"
+    environment:
+      EULA: "TRUE"
+      MIN_HEAP: "1G"
+      MAX_HEAP: "2G"
+    volumes:
+      - ./world:/minecraft/world
+      - ./plugins:/minecraft/plugins
+      - ./config:/minecraft/config
+    restart: unless-stopped
